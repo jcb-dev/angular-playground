@@ -1,0 +1,9 @@
+@import "layout/header";
+
+:host  {
+    background: $header-background;
+    color: $header-color;
+    height: $header-size;
+
+    display: flex;
+}
