@@ -1,9 +1,7 @@
-<div class="sidebar">
-    <app-sidebar [@expandSideBar]="showSidebar ? 'show' : 'hide'"></app-sidebar>
-</div>
+<app-sidebar [@expandSideBar]="showSidebar ? 'show' : 'hide'"></app-sidebar>
 
-
-<div class="content">
+<div class="content"
+     [@moveContent]="setContentState()">
     <app-header></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>

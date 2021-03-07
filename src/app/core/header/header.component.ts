@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.layoutSubscription = this._layoutService.sidebar$.subscribe(value => {
       this.showSidebar = value;
-      console.log(this.showSidebar);
     });
   }
 
