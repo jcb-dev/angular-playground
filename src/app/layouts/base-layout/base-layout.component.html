@@ -1,6 +1,5 @@
-<div class="sidebar"
-     *ngIf="showSidebar">
-    <app-sidebar></app-sidebar>
+<div class="sidebar">
+    <app-sidebar [@expandSideBar]="showSidebar ? 'show' : 'hide'"></app-sidebar>
 </div>
 
 

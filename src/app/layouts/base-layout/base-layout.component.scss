@@ -12,7 +12,7 @@
         // min-height: calc(100vh - #{$header-size});
         // padding-top: $header-size;
 
-        ::ng-deep router-outlet + * {
+    ::ng-deep router-outlet + * {
             flex-grow: 1;
         }
     }
