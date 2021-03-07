@@ -1,0 +1,9 @@
+@import "layout/sidebar";
+
+:host {
+    display: flex;
+    height: 100vh;
+
+    background: $sidebar-background;
+    width: $sidebar-width;
+}

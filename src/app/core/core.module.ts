@@ -4,6 +4,7 @@ import { EnsureModuleLoadedOnceGuard } from './ensure-module-loaded-once.guard';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { LayoutService } from './services/layout.service';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent],
@@ -13,7 +14,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+  ],
+  providers: [
+    LayoutService
   ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
