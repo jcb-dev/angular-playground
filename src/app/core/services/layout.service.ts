@@ -6,12 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LayoutService {
 
-  private sidebarBehaviorSubject = new BehaviorSubject<boolean>(false);
-  sidebar$ = this.sidebarBehaviorSubject.asObservable();
+  private sidebarBehaviorSubject$ = new BehaviorSubject<boolean>(false);
+  sidebar$ = this.sidebarBehaviorSubject$.asObservable();
 
   constructor() { }
 
-  toggleSidebar(value: boolean) {
-    this.sidebarBehaviorSubject.next(value)
+  toggleSidebar() {
+    let newValue = !this.sidebarBehaviorSubject$.getValue();
+    this.sidebarBehaviorSubject$.next(newValue)
   }
 }

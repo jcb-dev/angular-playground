@@ -1,0 +1,23 @@
+@import "layout/hamburger";
+
+@mixin hamburger {
+    background: $hamburger-background;
+    border: $hamburger-border;
+    color: $hamburger-color;
+    cursor: $hamburger-cursor;
+    outline: $hamburger-outline;
+
+    height: $hamburger-height;
+    width: $hamburger-width;
+}
+
+@mixin overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}

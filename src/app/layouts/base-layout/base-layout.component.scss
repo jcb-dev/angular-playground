@@ -1,16 +1,26 @@
 @import "layout/header";
+@import "abstracts/mixins";
 
 :host {
+    background: black;
+    
     .content {
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        position: relative;
 
-        // min-height: calc(100vh - #{$header-size});
-        // padding-top: $header-size;
-
+        // spreads out the router-outlet/children to the whole page
         ::ng-deep router-outlet + * {
             flex-grow: 1;
         }
+    }
+
+    .sidebar {
+        width: 0px;
+    }
+
+    .overlay {
+        @include overlay;
     }
 }

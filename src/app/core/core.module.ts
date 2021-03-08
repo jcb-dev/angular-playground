@@ -8,24 +8,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HamburgerComponent } from './hamburger/hamburger.component';
 import { LayoutService } from './services/layout.service';
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UtilService } from './services/util.service';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SidebarComponent],
+  declarations: [HeaderComponent, FooterComponent, SidebarComponent, HamburgerComponent],
   imports: [
     CommonModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    HamburgerComponent
   ],
   providers: [
-    LayoutService
+    LayoutService,
+    UtilService
   ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

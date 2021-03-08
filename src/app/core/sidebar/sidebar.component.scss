@@ -3,11 +3,11 @@
 :host {
     display: flex;
     height: 100vh;
-    
+
     position: fixed;
     bottom: 0;
     top: 0;
-    z-index: 2;
+    z-index: 3;
 
     background: $sidebar-background;
     width: $sidebar-width;
