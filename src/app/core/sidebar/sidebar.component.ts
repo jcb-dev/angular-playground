@@ -10,23 +10,17 @@ import { UtilService } from '../services/util.service';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit, OnDestroy {
-  layoutSubscription: Subscription;
-  utilSubscription: Subscription;
-  showSidebar: boolean;
-  isInside: boolean = false;
+  private layoutSubscription: Subscription;
 
-  constructor(private _layoutService: LayoutService,
-    private _utilService: UtilService) {
+  showSidebar: boolean;
+
+  constructor(private _layoutService: LayoutService) {
   }
 
   ngOnInit(): void {
     this.layoutSubscription = this._layoutService.sidebar$.subscribe(value => {
       this.showSidebar = value;
     });
-
-    // this.utilSubscription = this._utilService.documentClickedTarget.subscribe(target => {
-    //   this.documentClickListener(target);
-    // });
   }
 
   ngOnDestroy() {
@@ -36,14 +30,4 @@ export class SidebarComponent implements OnInit, OnDestroy {
   toggleSidebar() {
     this._layoutService.toggleSidebar();
   }
-
-  // documentClickListener(target: any): void {
-  //   if (this.sidebar.nativeElement.contains(target))
-  //     console.log(1);
-  //   else {
-  //     console.log(2);
-  //   }
-  // }
-
-  // @ViewChild('sidebar') sidebar;
 }

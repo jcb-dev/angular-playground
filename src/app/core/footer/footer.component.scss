@@ -1,9 +1,10 @@
 @import "layout/footer";
 
 :host {
-    bottom: 0;
     display: flex;
+
     position: relative;
+    bottom: 0;
 
     background: $footer-background;
     color: $footer-color;

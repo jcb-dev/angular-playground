@@ -8,19 +8,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
   template: ``,
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  layoutSubscription: Subscription;
-  showSidebar: boolean;
-
-  barIcon = faBars;
-
+export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
   }
-
-
-  ngOnDestroy() {
-  }
-
 }

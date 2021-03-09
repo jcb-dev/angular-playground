@@ -2,8 +2,6 @@
 @import "abstracts/mixins";
 
 :host {
-    background: black;
-    
     .content {
         display: flex;
         flex-direction: column;
@@ -14,10 +12,6 @@
         ::ng-deep router-outlet + * {
             flex-grow: 1;
         }
-    }
-
-    .sidebar {
-        width: 0px;
     }
 
     .overlay {

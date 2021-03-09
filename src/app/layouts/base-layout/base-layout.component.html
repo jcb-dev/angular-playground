@@ -3,11 +3,12 @@
 
 <app-hamburger></app-hamburger>
 
-<div #content class="content"
+<div #content
+     class="content"
      [@moveContent]="setContentState()">
      <app-header></app-header>
-     <!-- <div class="overlay"
-          *ngIf="showSidebar"></div> -->
+     <div class="overlay"
+          *ngIf="showSidebar"></div>
 
      <router-outlet></router-outlet>
      <app-footer></app-footer>

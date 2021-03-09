@@ -46,20 +46,22 @@ import { UtilService } from 'src/app/core/services/util.service';
 })
 
 export class BaseLayoutComponent implements OnInit, OnDestroy {
-  layoutSubscription: Subscription;
-  utilSubscription: Subscription;
 
-  showSidebar: boolean;
-  screenHeight: number;
-  screenWidth: number;
 
   constructor(
     private _layoutService: LayoutService,
     private _utilService: UtilService) {
-    this.getScreenSize();
+    this.getScreenWidth();
   }
 
   @ViewChild('content', { static: false }) content: ElementRef;
+
+  private layoutSubscription: Subscription;
+  private utilSubscription: Subscription;
+
+  private screenWidth: number;
+
+  showSidebar: boolean;
 
   ngOnInit(): void {
     this.layoutSubscription = this._layoutService.sidebar$.subscribe(value => {
@@ -73,22 +75,12 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.layoutSubscription.unsubscribe();
+    this.utilSubscription.unsubscribe();
   }
 
   @HostListener('window:resize', ['$event'])
-  getScreenSize(event?) {
-    this.screenHeight = window.innerHeight;
+  getScreenWidth(event?) {
     this.screenWidth = window.innerWidth;
-  }
-
-  // sets the state of trigger moveContent 
-  setContentState() {
-    let state = 'reset';
-    if (this.screenWidth > 768) {
-      if (this.showSidebar)
-        state = 'move'
-    }
-    return state;
   }
 
   @HostListener('document:click', ['$event'])
@@ -100,5 +92,14 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
     if (this.showSidebar)
       if (this.content.nativeElement.contains(target))
         this._layoutService.toggleSidebar();
+  }
+
+  setContentState() {
+    let state = 'reset';
+    if (this.screenWidth > 768) {
+      if (this.showSidebar)
+        state = 'move'
+    }
+    return state;
   }
 }
