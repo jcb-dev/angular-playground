@@ -1,0 +1,6 @@
+<div #sidebar
+     [@showSidebar]
+     [ngClass]="'sidebar'"
+     [ngClass.lt-sm]="'sidebar sidebar--mobile'"
+     *ngIf="showSidebar">
+</div>

@@ -8,10 +8,22 @@ import { UtilService } from '../services/util.service';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
+  animations: [
+    trigger('showSidebar', [
+      transition(':enter', [
+        style({ width: 0 }),
+        animate(250, style({ width: '*' }))
+      ]),
+      transition(':leave', [
+        style({ width: '*' }),
+        animate(250, style({ width: 0 }))
+      ])
+    ])
+  ]
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   private layoutSubscription: Subscription;
-
+  private utilSubscription: Subscription;
   showSidebar: boolean;
 
   constructor(private _layoutService: LayoutService) {

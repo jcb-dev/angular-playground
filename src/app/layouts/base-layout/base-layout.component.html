@@ -1,15 +1,9 @@
-<app-sidebar [@showSidebar]
-             *ngIf="showSidebar"></app-sidebar>
-
+<app-sidebar></app-sidebar>
 <app-hamburger></app-hamburger>
 
 <div #content
-     class="content"
-     [@moveContent]="setContentState()">
-     <app-header></app-header>
-     <div class="overlay"
-          *ngIf="showSidebar"></div>
-
-     <router-outlet></router-outlet>
-     <app-footer></app-footer>
+     class="content">
+     <!-- <app-header></app-header> -->
+     <router-outlet [@moveContent]="setContentState()"></router-outlet>
+     <app-footer [@moveContent]="setContentState()"></app-footer>
 </div>

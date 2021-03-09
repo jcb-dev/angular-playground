@@ -1,7 +1,6 @@
 @import "layout/sidebar";
 
 :host {
-    display: flex;
     height: 100vh;
 
     position: fixed;
@@ -9,6 +8,13 @@
     top: 0;
     z-index: 3;
 
-    background: $sidebar-background;
-    width: $sidebar-width;
+    .sidebar {
+        background: $sidebar-background;
+        height: $sidebar-height;
+        width: $sidebar-width;
+
+        &--mobile {
+            width: 100vw;
+        }
+    }
 }

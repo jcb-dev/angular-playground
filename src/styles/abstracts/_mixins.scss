@@ -1,8 +1,14 @@
 @import "layout/hamburger";
 
 @mixin hamburger {
+    align-items: center;
+    margin: 10px;
+
     background: $hamburger-background;
     border: $hamburger-border;
+    border-radius: $hamburger-border-radius;
+    box-shadow: $hamburger-box-shadow;
+
     color: $hamburger-color;
     cursor: $hamburger-cursor;
     outline: $hamburger-outline;

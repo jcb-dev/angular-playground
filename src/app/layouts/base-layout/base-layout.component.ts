@@ -1,8 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { combineLatest, Observable, of, Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/core/services/layout.service';
 import { UtilService } from 'src/app/core/services/util.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-base-layout',
@@ -16,9 +17,6 @@ import { UtilService } from 'src/app/core/services/util.service';
       state('reset', style({
         padding: '0',
       })),
-      state('shadow', style({
-        padding: '0',
-      })),
       transition('reset => move', [
         animate("300ms ease-out")
       ]),
@@ -26,32 +24,14 @@ import { UtilService } from 'src/app/core/services/util.service';
         animate("300ms ease-out")
       ]),
     ]),
-    trigger('showSidebar', [
-      transition(':enter',
-        [
-          style({ width: "0", opacity: 0 }),
-          animate('300ms ease-out',
-            style({ width: 250, opacity: 1 }))
-        ]
-      ),
-      transition(':leave',
-        [
-          style({ width: 250 }),
-          animate('300ms ease-out',
-            style({ width: 0 }))
-        ]
-      ),
-    ])
   ]
 })
 
 export class BaseLayoutComponent implements OnInit, OnDestroy {
 
-
   constructor(
     private _layoutService: LayoutService,
     private _utilService: UtilService) {
-    this.getScreenWidth();
   }
 
   @ViewChild('content', { static: false }) content: ElementRef;
@@ -59,7 +39,7 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
   private layoutSubscription: Subscription;
   private utilSubscription: Subscription;
 
-  private screenWidth: number;
+  private isMobile: boolean;
 
   showSidebar: boolean;
 
@@ -68,7 +48,7 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
       this.showSidebar = value;
     });
 
-    this.utilSubscription = this._utilService.documentClickedTarget.subscribe(target => {
+    this.utilSubscription = this._utilService.documentClickedTarget$.subscribe(target => {
       this.documentClickListener(target);
     });
   }
@@ -78,14 +58,9 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
     this.utilSubscription.unsubscribe();
   }
 
-  @HostListener('window:resize', ['$event'])
-  getScreenWidth(event?) {
-    this.screenWidth = window.innerWidth;
-  }
-
   @HostListener('document:click', ['$event'])
   documentClick(event: any): void {
-    this._utilService.documentClickedTarget.next(event.target)
+    this._utilService.clicked(event)
   }
 
   documentClickListener(target: any): void {
@@ -96,10 +71,10 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
 
   setContentState() {
     let state = 'reset';
-    if (this.screenWidth > 768) {
+    if (this.isMobile == false)
       if (this.showSidebar)
         state = 'move'
-    }
+
     return state;
   }
 }

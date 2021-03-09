@@ -12,6 +12,7 @@ import { HamburgerComponent } from './hamburger/hamburger.component';
 import { LayoutService } from './services/layout.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UtilService } from './services/util.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent, HamburgerComponent],
@@ -20,6 +21,7 @@ import { UtilService } from './services/util.service';
     BrowserModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    FlexLayoutModule
   ],
   exports: [
     HeaderComponent,
