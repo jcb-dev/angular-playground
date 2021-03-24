@@ -1,1 +1,24 @@
-$font-family: "Calibri";
+@font-face {
+    font-family: "Segoe UI";
+    src: url("/assets/font/Segoe UI.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Segoe UI Bold";
+    src: url("/assets/font/Segoe UI Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Segoe UI Italic";
+    src: url("/assets/font/Segoe UI Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Segoe UI Bold Italic";
+    src: url("/assets/font/Segoe UI Bold Italic.ttf") format("truetype");
+}
+
+$font-normal: "Segoe UI";
+$font-bold: "Segoe UI Bold";
+$font-italic: "Segoe UI Italic";
+$font-bold-italic: "Segoe UI Bold Italic";

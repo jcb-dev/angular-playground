@@ -1,0 +1,18 @@
+<nav #sidebar
+         [@showSidebar]
+         [ngClass]="'sidebar'"
+         [ngClass.lt-sm]="'sidebar sidebar--mobile'"
+         *ngIf="showSidebar"
+         fxLayout="column">
+
+     <!-- <h1>Header</h1> -->
+
+     <div class="" fxLayout="column"
+     fxLayoutAlign="space-around center">
+          <a>Link One</a>
+          <a>Link Two</a>
+          <a>Link Three</a>
+          <a>Link Four</a>
+          <a>Link Five</a>
+     </div>
+</nav>

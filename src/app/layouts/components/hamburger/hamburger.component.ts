@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { LayoutService } from '../services/layout.service';
+import { LayoutService } from 'src/app/core/services/layout.service';
 
 @Component({
   selector: 'app-hamburger',
@@ -12,7 +12,7 @@ import { LayoutService } from '../services/layout.service';
     </button>` ,
   styleUrls: ['./hamburger.component.scss']
 })
-export class HamburgerComponent implements OnInit {
+export class HamburgerComponent implements OnInit, OnDestroy {
   private layoutSubscription: Subscription;
 
   private hamburgerIcon = faBars;
@@ -26,6 +26,10 @@ export class HamburgerComponent implements OnInit {
     this.layoutSubscription = this._layoutService.sidebar$.subscribe(value => {
       this.showSidebar = value;
     });
+  }
+
+  ngOnDestroy() {
+    this.layoutSubscription.unsubscribe();
   }
 
   toggleSidebar() {

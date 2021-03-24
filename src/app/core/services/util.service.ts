@@ -21,7 +21,7 @@ export class UtilService {
   isMobile(width: any) {
     let isMobile = false;
 
-    if (width < 768)
+    if (width <= 600)
       isMobile = true;
 
     this.isMobileSubject$.next(isMobile);

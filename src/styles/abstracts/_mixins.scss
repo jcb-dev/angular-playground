@@ -4,10 +4,11 @@
     align-items: center;
     margin: 10px;
 
-    background: $hamburger-background;
+    // background: $hamburger-background;
+    background: none;
     border: $hamburger-border;
-    border-radius: $hamburger-border-radius;
-    box-shadow: $hamburger-box-shadow;
+    // border-radius: $hamburger-border-radius;
+    // box-shadow: $hamburger-box-shadow;
 
     color: $hamburger-color;
     cursor: $hamburger-cursor;

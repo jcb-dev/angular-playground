@@ -32,6 +32,7 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private _layoutService: LayoutService,
     private _utilService: UtilService) {
+    this.getScreenWidth();
   }
 
   @ViewChild('content', { static: false }) content: ElementRef;
@@ -51,6 +52,10 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
     this.utilSubscription = this._utilService.documentClickedTarget$.subscribe(target => {
       this.documentClickListener(target);
     });
+
+    this.utilSubscription = this._utilService.isMobile$.subscribe(value => {
+      this.isMobile = value;
+    });
   }
 
   ngOnDestroy() {
@@ -61,6 +66,11 @@ export class BaseLayoutComponent implements OnInit, OnDestroy {
   @HostListener('document:click', ['$event'])
   documentClick(event: any): void {
     this._utilService.clicked(event)
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenWidth(event?) {
+    this._utilService.isMobile(window.innerWidth);
   }
 
   documentClickListener(target: any): void {

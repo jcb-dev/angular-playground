@@ -1,8 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { of, Subscription } from 'rxjs';
-import { LayoutService } from '../services/layout.service';
-import { UtilService } from '../services/util.service';
+import { Subscription } from 'rxjs';
+import { LayoutService } from 'src/app/core/services/layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,12 +10,12 @@ import { UtilService } from '../services/util.service';
   animations: [
     trigger('showSidebar', [
       transition(':enter', [
-        style({ width: 0 }),
-        animate(250, style({ width: '*' }))
+        style({ width: 0 , opacity: 0 }),
+        animate(150, style({ width: '*', opacity: 1 }))
       ]),
       transition(':leave', [
-        style({ width: '*' }),
-        animate(250, style({ width: 0 }))
+        style({ width: '*', opacity: 1 }),
+        animate(150, style({ width: 0, opacity: 0 }))
       ])
     ])
   ]
