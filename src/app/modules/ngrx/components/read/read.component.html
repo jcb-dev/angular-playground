@@ -1,0 +1,8 @@
+<h3>States</h3>
+<ul>
+    <li (click)="delState(i)" *ngFor="let state of states | async; let i = index">
+        <span>ID : {{ state.id }}</span> |
+        <span>Name : {{ state.name }}</span> |
+        <span>Value : {{ state.value }}</span>
+    </li>
+</ul>
