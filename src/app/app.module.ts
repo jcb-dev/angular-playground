@@ -9,7 +9,7 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 @NgModule({
   declarations: [
     AppComponent,
-    BaseLayoutComponent
+    BaseLayoutComponent,
   ],
   imports: [
     BrowserModule,

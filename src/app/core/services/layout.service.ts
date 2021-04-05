@@ -8,7 +8,7 @@ export class LayoutService {
 
   constructor() { }
 
-  private sidebarBehaviorSubject$ = new BehaviorSubject<boolean>(true);
+  private sidebarBehaviorSubject$ = new BehaviorSubject<boolean>(false);
   sidebar$ = this.sidebarBehaviorSubject$.asObservable();
 
   toggleSidebar() {

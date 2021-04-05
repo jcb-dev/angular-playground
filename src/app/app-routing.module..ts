@@ -6,9 +6,20 @@ const routes: Routes = [
     {
         path: '',
         component: BaseLayoutComponent,
-        loadChildren: () =>
-            import('./modules/home/home.module')
-                .then(m => m.HomeModule)
+        children: [
+            {
+                path: '',
+                loadChildren: () =>
+                    import('./modules/home/home.module')
+                        .then(m => m.HomeModule)
+            },
+            {
+                path: 'ngrx',
+                loadChildren: () =>
+                    import('./modules/ngrx/ngrx.module')
+                        .then(m => m.NgrxModule)
+            }
+        ]
     }
 ];
 
