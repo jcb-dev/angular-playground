@@ -11,11 +11,11 @@ import { LayoutService } from 'src/app/core/services/layout.service';
     trigger('showSidebar', [
       transition(':enter', [
         style({ width: 0 , opacity: 0 }),
-        animate(150, style({ width: '*', opacity: 1 }))
+        animate(250, style({ width: '*', opacity: 1 }))
       ]),
       transition(':leave', [
         style({ width: '*', opacity: 1 }),
-        animate(150, style({ width: 0, opacity: 0 }))
+        animate(250, style({ width: 0, opacity: 0 }))
       ])
     ])
   ]
