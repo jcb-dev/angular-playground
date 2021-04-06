@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { StateComponent } from "./pages/state/state.component";
+import { ShoppingListComponent } from "./pages/shopping-list/shopping-list.component";
+import { StateComponent } from "./pages/state-list/state-list.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: StateComponent
+        component: ShoppingListComponent
     }
 ];
 

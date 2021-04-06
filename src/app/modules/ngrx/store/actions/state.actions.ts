@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { State } from '../models/state.model';
+import { State } from '../../models/state.model';
 
 export const ADD_STATE = '[STATE] Add';
 export const REMOVE_STATE = '[STATE] Remove';

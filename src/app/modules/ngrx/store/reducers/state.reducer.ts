@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { State } from '../models/state.model';
+import { State } from '../../models/state.model';
 import * as StateActions from '../actions/state.actions';
 
 const initialState: State = {

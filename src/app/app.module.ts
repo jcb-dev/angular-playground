@@ -14,7 +14,7 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
   imports: [
     BrowserModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

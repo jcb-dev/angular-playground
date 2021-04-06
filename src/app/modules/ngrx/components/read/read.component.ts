@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
-import { AppState } from '../../store/ngrx.state';
-import { State } from '../../store/models/state.model';
+import { AppState } from '../../store/ngrx.state.model';
+import { State } from '../../models/state.model';
 
 import * as StateActions from '../../store/actions/state.actions';
 
