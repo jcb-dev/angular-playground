@@ -4,7 +4,7 @@ import { NgrxRoutingModule } from "./ngrx-routing.module";
 import { StateComponent } from './pages/state/state.component';
 
 import { StoreModule } from '@ngrx/store';
-import { reducer } from "./reducers/state.reducer";
+import { reducer } from "./store/reducers/state.reducer";
 import { ReadComponent } from './components/read/read.component';
 import { CreateComponent } from './components/create/create.component';
 

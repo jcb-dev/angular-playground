@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
-import { AppState } from '../../ngrx.state';
-import { State } from '../../models/state.model';
+import { AppState } from '../../store/ngrx.state';
+import { State } from '../../store/models/state.model';
 
-import * as StateActions from '../../actions/state.actions';
+import * as StateActions from '../../store/actions/state.actions';
 
 @Component({
   selector: 'app-read',
