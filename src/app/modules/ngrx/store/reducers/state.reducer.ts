@@ -8,7 +8,7 @@ const initialState: State = {
     value: "1"
 }
 
-export function reducer(state: State[] = [initialState], action: StateActions.Actions) {
+export function StateReducer(state: State[] = [initialState], action: StateActions.Actions) {
     switch (action.type) {
 
         case StateActions.ADD_STATE:

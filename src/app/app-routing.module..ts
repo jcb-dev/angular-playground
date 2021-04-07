@@ -18,6 +18,12 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('./modules/ngrx/ngrx.module')
                         .then(m => m.NgrxModule)
+            },
+            {
+                path: 'angular',
+                loadChildren: () =>
+                    import('./modules/angular/angular.module')
+                        .then(m => m.AngularModule)
             }
         ]
     }

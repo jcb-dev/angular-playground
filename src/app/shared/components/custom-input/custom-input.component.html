@@ -1,0 +1,9 @@
+<!-- {{ attributes | json }}
+{{ attributes.value | json }} -->
+
+<input type="{{ attributes.type }}"
+       placeholder="{{ attributes.placeholder }}"
+       [formControl]="formControl">
+
+<custom-error [fieldName]="attributes.placeholder"
+              [errorDetails]="sendErrorDetails()"></custom-error>

@@ -1,28 +1,69 @@
 import { ShoppingAction, ShoppingActionTypes } from "../actions/shopping.actions";
-import { ShoppingItem } from "../../models/shopping-item.model";
+import { ShoppingItem, ShoppingState } from "../../models/shopping-item.model";
+import { CastExpr } from "@angular/compiler";
 
-const initialState: Array<ShoppingItem> = [
-    {
-        id: "bacfefa1-c267-4d22-8604-2a12d3845a3b",
-        name: 'Coke'
-    },
-    {
-        id: "22eab8bc-f62c-416e-965c-4d38cd6ccf69",
-        name: 'Diet Coke'
-    }
-];
+const initialState: ShoppingState = {
+    list: [],
+    loading: false,
+    error: undefined
+}
 
 export function ShoppingReducer(
-    state: Array<ShoppingItem> = initialState,
+    state: ShoppingState = initialState,
     action: ShoppingAction) {
 
     switch (action.type) {
+        case ShoppingActionTypes.LOAD_SHOPPING:
+            return {
+                ...state,
+                loading: true
+            };
+        case ShoppingActionTypes.LOAD_SHOPPING_SUCESS:
+            return {
+                ...state,
+                list: action.payload,
+                loading: false
+            };
+        case ShoppingActionTypes.LOAD_SHOPPING_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
         case ShoppingActionTypes.ADD_ITEM:
-            console.log(action.type, action.payload);
-            return [...state, action.payload];
+            return {
+                ...state,
+                loading: true
+            };
+        case ShoppingActionTypes.ADD_ITEM_SUCCESS:
+            return {
+                ...state,
+                list: [...state.list, action.payload],
+                loading: false
+            };
+        case ShoppingActionTypes.ADD_ITEM_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
         case ShoppingActionTypes.DELETE_ITEM:
-            console.log(action.type, action.payload);
-            return state.filter(item => item.id !== action.payload);
+            return {
+                ...state,
+                loading: false
+            };
+        case ShoppingActionTypes.DELETE_ITEM_SUCCESS:
+            return {
+                ...state,
+                list: state.list.filter(item => item.id !== action.payload),
+                loading: false
+            };
+        case ShoppingActionTypes.DELETE_ITEM_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
         default:
             return state;
     }
