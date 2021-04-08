@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InputType } from 'src/app/shared/enums/field.enum';
 import { FieldAttributes } from 'src/app/shared/models/field.model';
+import { Person } from '../../models/person.model';
+import { ReactiveFormsService } from '../../services/reactive-forms.service';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -9,17 +12,37 @@ import { FieldAttributes } from 'src/app/shared/models/field.model';
 })
 export class ReactiveFormsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private reactiveFormsService: ReactiveFormsService) { }
 
-  sampleField: FieldAttributes;
+  sampleField: Array<FieldAttributes> = new Array<FieldAttributes>();
 
   ngOnInit(): void {
-    this.sampleField = {} as FieldAttributes;
-    this.sampleField.placeholder = "First Name";
-    this.sampleField.value = "John";
-    this.sampleField.minLength = 5;
-    this.sampleField.maxLength = 10;
-    this.sampleField.required = true;
-    this.sampleField.type = InputType.INPUT;
+    this.reactiveFormsService.getForm().subscribe((val: FieldAttributes[]) => {
+      val.forEach(el => {
+
+        let field = {} as FieldAttributes;
+        field.placeholder = el.placeholder;
+        field.value = el.value;
+        field.minLength = el.minLength;
+        field.maxLength = el.maxLength;
+        field.required = el.required;
+        field.options = el.options;
+        field.type = el.type;
+
+        this.sampleField.push(field);
+      });
+    });
+  }
+
+  submit() {
+    let person = {} as Person;
+    person.id = uuid();
+    person.firstName = "Jojo";
+    person.lastName = "Mojo";
+    person.gender = 1;
+
+    this.reactiveFormsService.addPerson(person).subscribe(val => {
+      console.log("success", val);
+    })
   }
 }

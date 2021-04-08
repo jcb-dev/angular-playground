@@ -1,0 +1,35 @@
+<!-- {{ attributes.value | json }} -->
+
+<!-- <div *ngIf="_attributes">
+       <input type="{{ _attributes.type }}"
+              placeholder="{{ _attributes.placeholder }}"
+              [formControl]="formControl">
+
+       <custom-error [fieldName]="_attributes.placeholder"
+                     [errorDetails]="sendErrorDetails()"></custom-error>
+</div> -->
+
+
+<div *ngIf="_attributes"
+     [ngSwitch]="_attributes.type">
+
+       <div *ngSwitchCase="'input'">
+              <input type="{{ _attributes.type }}"
+                     placeholder="{{ _attributes.placeholder }}"
+                     [formControl]="formControl"
+                     (keyup)="setFormControlValue()">
+       </div>
+
+
+       <div *ngSwitchCase="'select'">
+              <select>
+                     <option selected="selected"
+                             disabled>{{ _attributes.placeholder }}</option>
+                     <option *ngFor="let option of _attributes.options">{{option}}</option>
+              </select>
+       </div>
+
+       <custom-error *ngIf="formControl.touched"
+                     [fieldName]="_attributes.placeholder"
+                     [errorDetails]="formControl.errors ? formControl.errors : ''"></custom-error>
+</div>

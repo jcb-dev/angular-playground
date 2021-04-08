@@ -7,5 +7,6 @@ export interface FieldAttributes {
     minLength: number;
     maxLength: number;
     pattern: string;
+    options: string[];
     type: InputType;
 }

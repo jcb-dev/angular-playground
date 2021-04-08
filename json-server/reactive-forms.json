@@ -1,0 +1,24 @@
+{
+  "person": [
+  ],
+  "form": [
+    {
+      "placeholder": "First Name",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 5,
+      "pattern": "",
+      "type": "input"
+    },
+    {
+      "placeholder": "Gender",
+      "options": [
+        "male",
+        "female"
+      ],
+      "required": true,
+      "pattern": "",
+      "type": "select"
+    }
+  ]
+}

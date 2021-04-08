@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomInputComponent } from './custom-input.component';
+import { CustomFieldComponent } from './custom-field.component';
 
 describe('CustomInputComponent', () => {
-  let component: CustomInputComponent;
-  let fixture: ComponentFixture<CustomInputComponent>;
+  let component: CustomFieldComponent;
+  let fixture: ComponentFixture<CustomFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomInputComponent ]
+      declarations: [ CustomFieldComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomInputComponent);
+    fixture = TestBed.createComponent(CustomFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

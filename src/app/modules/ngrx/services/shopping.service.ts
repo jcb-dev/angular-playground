@@ -8,7 +8,6 @@ import { ShoppingItem } from '../models/shopping-item.model';
 })
 export class ShoppingService {
 
-
   private SHOPPING_URL = "http://localhost:3000/shopping";
 
   constructor(private http: HttpClient) { }

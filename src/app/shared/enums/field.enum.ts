@@ -1,5 +1,6 @@
 export enum InputType {
     INPUT = "input",
     NUMBER = "number",
-    TEL = "tel"
+    TEL = "tel",
+    SELECT = "select"
 }

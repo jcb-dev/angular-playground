@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomInputComponent } from './components/custom-input/custom-input.component';
+import { CustomFieldComponent } from './components/custom-field/custom-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomErrorComponent } from './components/custom-error/custom-error.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [CustomInputComponent, CustomErrorComponent],
+  declarations: [CustomFieldComponent, CustomErrorComponent],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  exports: [CustomInputComponent, CustomErrorComponent]
+  exports: [CustomFieldComponent, CustomErrorComponent]
 })
 export class SharedModule { }
