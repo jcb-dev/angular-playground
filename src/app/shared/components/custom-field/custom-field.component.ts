@@ -2,7 +2,7 @@ import { AfterContentInit, AfterViewInit, ChangeDetectorRef, EventEmitter, Simpl
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
-import { FieldAttributes } from '../../models/field.model';
+import { FieldAttributes, FieldOutput } from '../../models/field.model';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class CustomFieldComponent implements OnInit {
 
-  @Output() outputValue: EventEmitter<any>;
+  @Output() outputValue: EventEmitter<FieldOutput> = new EventEmitter<FieldOutput>();
   @Input() value?: any;
   @Input() set attributes(value: FieldAttributes) {
     this._attributes = value;
@@ -24,7 +24,7 @@ export class CustomFieldComponent implements OnInit {
 
   _attributes: FieldAttributes;
 
-  constructor(private _formBuilder: FormBuilder, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private _formBuilder: FormBuilder) {
     this.formControl = this._formBuilder.control('');
   }
 
@@ -33,16 +33,15 @@ export class CustomFieldComponent implements OnInit {
 
   ngOnInit(): void {
     this.formControlSubscription$ = this.formControlSubject
-      .pipe(debounceTime(0))
-      .subscribe(val => {
-        console.log(val)
+      .pipe(debounceTime(500))
+      .subscribe(value => {
+        let output = { value: value, model: this._attributes.model };
+        this.outputValue.emit(output);
       });
   }
 
   setAttributes(value: FieldAttributes) {
     if (value) {
-      this.formControl = this._formBuilder.control(this._attributes.value, { updateOn: 'blur' });
-
       if (value.required) {
         this.setValidators("required", value.required);
       }
@@ -89,8 +88,23 @@ export class CustomFieldComponent implements OnInit {
     return this.formControl.errors;
   }
 
+  setErrorMessage(validator: any) {
+    let errorMessage = ''
+
+    if (!validator)
+      return;
+
+    if (validator['required'])
+      errorMessage = `${this._attributes.label} field is required.`;
+    if (validator['minlength'])
+      errorMessage = `${this._attributes.label} field requires ${validator['minlength'].requiredLength} minimum characters.`;
+    if (validator['maxlength'])
+      errorMessage = `${this._attributes.label} field requires ${validator['maxlength'].requiredLength} maximum characters.`;
+
+    return errorMessage;
+  }
+
   setFormControlValue() {
     this.formControlSubject.next(this.formControl.value);
-    console.log('emit', this.formControl.value);
   }
 }

@@ -1,7 +1,7 @@
 import { InputType } from "../enums/field.enum";
 
 export interface FieldAttributes {
-    value: string;
+    label: string;
     placeholder: string;
     required: boolean;
     minLength: number;
@@ -9,4 +9,10 @@ export interface FieldAttributes {
     pattern: string;
     options: string[];
     type: InputType;
+    model: string;
+}
+
+export interface FieldOutput {
+    value: any;
+    model: string;
 }

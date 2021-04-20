@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { FieldAttributes } from 'src/app/shared/models/field.model';
-import { map } from 'rxjs/operators';
-import { Person } from '../models/person.model';
+import { ToDo } from '../models/todo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +11,33 @@ export class ReactiveFormsService {
 
   private API_URL = "http://localhost:3000";
 
+  private todoListBehaviorSubject$ = new BehaviorSubject<ToDo[]>(null);
+  private todoBehaviorSubject$ = new BehaviorSubject<ToDo>(new ToDo());
+
   constructor(private http: HttpClient) { }
 
-  private personSubject$: Subject<Person> = new Subject<Person>();
-  person$ = this.personSubject$.asObservable();
+  public get todoList(): Observable<ToDo[]> {
+    return this.todoListBehaviorSubject$.asObservable();
+  }
 
-  getForm() {
+  public get todo(): Observable<ToDo> {
+    return this.todoBehaviorSubject$.asObservable();
+  }
+
+  getTodoFields() {
     return this.http.get<FieldAttributes[]>(this.API_URL + '/form');
   }
 
-  addPerson(field: Person) {
-    return this.http.post(this.API_URL + '/person', field);
+  getTodoList() {
+    return this.http.get<ToDo[]>(this.API_URL + '/todo')
+      .subscribe((value) => {
+        this.todoListBehaviorSubject$.next(value);
+      });
+  }
+
+  setTodoList(model: string, value: any) {
+    const currentValue = this.todoBehaviorSubject$.getValue();
+    currentValue[model] = value;
+    this.todoBehaviorSubject$.next(currentValue);
   }
 }

@@ -10,8 +10,12 @@
 </div> -->
 
 
-<div *ngIf="_attributes"
-     [ngSwitch]="_attributes.type">
+<section *ngIf="_attributes"
+         [ngSwitch]="_attributes.type">
+
+       <div>
+              {{ _attributes.label }}
+       </div>
 
        <div *ngSwitchCase="'input'">
               <input type="{{ _attributes.type }}"
@@ -22,14 +26,30 @@
 
 
        <div *ngSwitchCase="'select'">
-              <select>
+              <select (change)="setFormControlValue()"
+                      [formControl]="formControl">
                      <option selected="selected"
                              disabled>{{ _attributes.placeholder }}</option>
                      <option *ngFor="let option of _attributes.options">{{option}}</option>
               </select>
        </div>
 
-       <custom-error *ngIf="formControl.touched"
-                     [fieldName]="_attributes.placeholder"
-                     [errorDetails]="formControl.errors ? formControl.errors : ''"></custom-error>
-</div>
+       <div *ngSwitchCase="'radio-tile'">
+              <div fxLayout="column">
+                     <div fxFlex="50"
+                          class="radio-container"
+                          *ngFor="let option of _attributes.options">
+                            <input type="radio"
+                                   id="test"
+                                   value="option"
+                                   name="gender">
+                            <label for="test">{{option}} </label>
+                     </div>
+              </div>
+
+       </div>
+
+       <div *ngIf="formControl.touched">
+              {{ setErrorMessage(formControl.errors) }}
+       </div>
+</section>

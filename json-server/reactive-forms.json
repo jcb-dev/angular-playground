@@ -1,24 +1,33 @@
 {
-  "person": [
+  "todo": [
+    {
+      "id": "1234",
+      "todo": "Write",
+      "isDone": "yes"
+    }
   ],
   "form": [
     {
-      "placeholder": "First Name",
+      "label": "To do",
+      "placeholder": "",
       "required": true,
       "minLength": 3,
-      "maxLength": 5,
+      "maxLength": 10,
       "pattern": "",
-      "type": "input"
+      "type": "input",
+      "model": "toDo"
     },
     {
-      "placeholder": "Gender",
+      "label": "Is this done?",
+      "placeholder": "",
       "options": [
-        "male",
-        "female"
+        "yes",
+        "no",
+        "partially"
       ],
       "required": true,
-      "pattern": "",
-      "type": "select"
+      "model": "isDone",
+      "type": "radio-tile"
     }
   ]
 }

@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InputType } from 'src/app/shared/enums/field.enum';
-import { FieldAttributes } from 'src/app/shared/models/field.model';
-import { Person } from '../../models/person.model';
+import { FieldAttributes, FieldOutput } from 'src/app/shared/models/field.model';
 import { ReactiveFormsService } from '../../services/reactive-forms.service';
 import { v4 as uuid } from 'uuid';
 
@@ -15,34 +14,42 @@ export class ReactiveFormsComponent implements OnInit {
   constructor(private reactiveFormsService: ReactiveFormsService) { }
 
   sampleField: Array<FieldAttributes> = new Array<FieldAttributes>();
+  fieldOutput: FieldOutput[] = new Array<FieldOutput>();
+
+  todoId: number;
 
   ngOnInit(): void {
-    this.reactiveFormsService.getForm().subscribe((val: FieldAttributes[]) => {
+    this.todoId = uuid();
+    this.reactiveFormsService.setTodoList("id", this.todoId);
+
+    this.reactiveFormsService.getTodoList();
+    this.reactiveFormsService.getTodoFields().subscribe((val: FieldAttributes[]) => {
       val.forEach(el => {
 
         let field = {} as FieldAttributes;
+        field.label = el.label;
         field.placeholder = el.placeholder;
-        field.value = el.value;
         field.minLength = el.minLength;
         field.maxLength = el.maxLength;
         field.required = el.required;
         field.options = el.options;
         field.type = el.type;
+        field.model = el.model;
 
         this.sampleField.push(field);
       });
     });
+
+    this.reactiveFormsService.todoList.subscribe(value => {
+    });
+
+    this.reactiveFormsService.todo.subscribe(value => {
+      console.log(value);
+    });
   }
 
-  submit() {
-    let person = {} as Person;
-    person.id = uuid();
-    person.firstName = "Jojo";
-    person.lastName = "Mojo";
-    person.gender = 1;
-
-    this.reactiveFormsService.addPerson(person).subscribe(val => {
-      console.log("success", val);
-    })
+  setValue(event: FieldOutput) {
+    this.reactiveFormsService.setTodoList(event.model, event.value);
   }
+
 }

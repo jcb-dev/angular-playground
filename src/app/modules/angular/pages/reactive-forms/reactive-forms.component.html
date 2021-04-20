@@ -1,8 +1,12 @@
 <p>reactive-forms works!</p>
 
-<custom-field [attributes]="sampleField[0]"></custom-field>
-<custom-field [attributes]="sampleField[1]"></custom-field>
+<custom-field [attributes]="sampleField[0]"
+              (outputValue)="setValue($event)"></custom-field>
+<custom-field [attributes]="sampleField[1]"
+              (outputValue)="setValue($event)"></custom-field>
+<custom-field [attributes]="sampleField[2]"
+              (outputValue)="setValue($event)"></custom-field>
 
-<button (click)="submit()">
-Submit
+<button>
+    Submit
 </button>
